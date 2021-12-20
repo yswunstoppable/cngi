@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.occamedu.monitor.server.mapper.SmsSetMapper">
+  <resultMap id="BaseResultMap" type="com.occamedu.monitor.server.entity.SmsSet">
+    <id column="ID" jdbcType="CHAR" property="id" />
+    <result column="SEND_SMS" jdbcType="CHAR" property="sendSms" />
+    <result column="TENCENT_SMS_APP_ID" jdbcType="CHAR" property="tencentSmsAppId" />
+    <result column="TENCENT_SMS_SECRET_ID" jdbcType="CHAR" property="tencentSmsSecretId" />
+    <result column="TENCENT_SMS_SECRET_KEY" jdbcType="CHAR" property="tencentSmsSecretKey" />
+    <result column="TO_MOBILE" jdbcType="CHAR" property="toMobile" />
+    <result column="CPU_PER" jdbcType="CHAR" property="cpuPer" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MEM_PER" jdbcType="CHAR" property="memPer" />
+    <result column="HEATH_PER" jdbcType="CHAR" property="heathPer" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, SEND_SMS, TENCENT_SMS_APP_ID, TENCENT_SMS_SECRET_ID, TENCENT_SMS_SECRET_KEY, 
+    TO_MOBILE, CPU_PER, CREATE_TIME, MEM_PER, HEATH_PER
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SMS_SET
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <select id="selectAllByParams" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from SMS_SET
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SMS_SET
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.occamedu.monitor.server.entity.SmsSet" useGeneratedKeys="true">
+    insert into SMS_SET (SEND_SMS, TENCENT_SMS_APP_ID, TENCENT_SMS_SECRET_ID, 
+      TENCENT_SMS_SECRET_KEY, TO_MOBILE, CPU_PER, 
+      CREATE_TIME, MEM_PER, HEATH_PER
+      )
+    values (#{sendSms,jdbcType=CHAR}, #{tencentSmsAppId,jdbcType=CHAR}, #{tencentSmsSecretId,jdbcType=CHAR}, 
+      #{tencentSmsSecretKey,jdbcType=CHAR}, #{toMobile,jdbcType=CHAR}, #{cpuPer,jdbcType=CHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{memPer,jdbcType=CHAR}, #{heathPer,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.occamedu.monitor.server.entity.SmsSet" useGeneratedKeys="true">
+    insert into SMS_SET
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sendSms != null">
+        SEND_SMS,
+      </if>
+      <if test="tencentSmsAppId != null">
+        TENCENT_SMS_APP_ID,
+      </if>
+      <if test="tencentSmsSecretId != null">
+        TENCENT_SMS_SECRET_ID,
+      </if>
+      <if test="tencentSmsSecretKey != null">
+        TENCENT_SMS_SECRET_KEY,
+      </if>
+      <if test="toMobile != null">
+        TO_MOBILE,
+      </if>
+      <if test="cpuPer != null">
+        CPU_PER,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="memPer != null">
+        MEM_PER,
+      </if>
+      <if test="heathPer != null">
+        HEATH_PER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sendSms != null">
+        #{sendSms,jdbcType=CHAR},
+      </if>
+      <if test="tencentSmsAppId != null">
+        #{tencentSmsAppId,jdbcType=CHAR},
+      </if>
+      <if test="tencentSmsSecretId != null">
+        #{tencentSmsSecretId,jdbcType=CHAR},
+      </if>
+      <if test="tencentSmsSecretKey != null">
+        #{tencentSmsSecretKey,jdbcType=CHAR},
+      </if>
+      <if test="toMobile != null">
+        #{toMobile,jdbcType=CHAR},
+      </if>
+      <if test="cpuPer != null">
+        #{cpuPer,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memPer != null">
+        #{memPer,jdbcType=CHAR},
+      </if>
+      <if test="heathPer != null">
+        #{heathPer,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.occamedu.monitor.server.entity.SmsSet">
+    update SMS_SET
+    <set>
+      <if test="sendSms != null">
+        SEND_SMS = #{sendSms,jdbcType=CHAR},
+      </if>
+      <if test="tencentSmsAppId != null">
+        TENCENT_SMS_APP_ID = #{tencentSmsAppId,jdbcType=CHAR},
+      </if>
+      <if test="tencentSmsSecretId != null">
+        TENCENT_SMS_SECRET_ID = #{tencentSmsSecretId,jdbcType=CHAR},
+      </if>
+      <if test="tencentSmsSecretKey != null">
+        TENCENT_SMS_SECRET_KEY = #{tencentSmsSecretKey,jdbcType=CHAR},
+      </if>
+      <if test="toMobile != null">
+        TO_MOBILE = #{toMobile,jdbcType=CHAR},
+      </if>
+      <if test="cpuPer != null">
+        CPU_PER = #{cpuPer,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memPer != null">
+        MEM_PER = #{memPer,jdbcType=CHAR},
+      </if>
+      <if test="heathPer != null">
+        HEATH_PER = #{heathPer,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.occamedu.monitor.server.entity.SmsSet">
+    update SMS_SET
+    set SEND_SMS = #{sendSms,jdbcType=CHAR},
+      TENCENT_SMS_APP_ID = #{tencentSmsAppId,jdbcType=CHAR},
+      TENCENT_SMS_SECRET_ID = #{tencentSmsSecretId,jdbcType=CHAR},
+      TENCENT_SMS_SECRET_KEY = #{tencentSmsSecretKey,jdbcType=CHAR},
+      TO_MOBILE = #{toMobile,jdbcType=CHAR},
+      CPU_PER = #{cpuPer,jdbcType=CHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MEM_PER = #{memPer,jdbcType=CHAR},
+      HEATH_PER = #{heathPer,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

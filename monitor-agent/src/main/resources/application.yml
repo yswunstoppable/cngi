@@ -1,0 +1,18 @@
+server:
+  port: 9998
+  servlet:
+    context-path: /monitor-agent
+spring:
+  application:
+    name: monitor-agent
+logging:
+  path: ./log
+
+#自定义配置参数
+base:
+  #monitor-server端访问地址
+  serverUrl: http://localhost:9999
+  #本机ip，不要用localhost
+  bindIp: fe80::18af:715f:51a:4af3
+  #通信token，请和server端配置的wgToken保持一致
+  wgToken: occamedu

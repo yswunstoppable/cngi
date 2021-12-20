@@ -1,0 +1,418 @@
+Table: APP_INFO
+-------------+---------------+------+-----+---------+---------
+ Field       | Type          | Null | Key | Default | Remarks 
+-------------+---------------+------+-----+---------+---------
+ ID          | CHAR(32)      | NO   | PRI |         |         
+ HOST_NAME   | CHAR(30)      | YES  |     |         |         
+ APP_PID     | CHAR(200)     | YES  |     |         |         
+ CREATE_TIME | TIMESTAMP(19) | YES  |     |         |         
+ APP_NAME    | VARCHAR(50)   | YES  |     |         |         
+ CPU_PER     | DOUBLE(8,2)   | YES  |     |         |         
+ MEM_PER     | DOUBLE(10,2)  | YES  |     |         |         
+ APP_TYPE    | CHAR(1)       | YES  |     |         |         
+ STATE       | CHAR(1)       | YES  |     |         |         
+-------------+---------------+------+-----+---------+---------
+
+Table: APP_STATE
+-------------+---------------+------+-----+---------+---------
+ Field       | Type          | Null | Key | Default | Remarks 
+-------------+---------------+------+-----+---------+---------
+ ID          | CHAR(32)      | NO   | PRI |         |         
+ APP_INFO_ID | CHAR(32)      | YES  |     |         |         
+ CPU_PER     | DOUBLE(8,2)   | YES  |     |         |         
+ MEM_PER     | DOUBLE(10,2)  | YES  |     |         |         
+ CREATE_TIME | TIMESTAMP(19) | YES  |     |         |         
+-------------+---------------+------+-----+---------+---------
+
+Table: CPU_STATE
+-------------+---------------+------+-----+---------+---------
+ Field       | Type          | Null | Key | Default | Remarks 
+-------------+---------------+------+-----+---------+---------
+ ID          | CHAR(32)      | NO   | PRI |         |         
+ HOST_NAME   | CHAR(30)      | YES  |     |         |         
+ USER        | CHAR(30)      | YES  |     |         |         
+ SYS         | DOUBLE(8,2)   | YES  |     |         |         
+ IDLE        | DOUBLE(8,2)   | YES  |     |         |         
+ IOWAIT      | DOUBLE(8,2)   | YES  |     |         |         
+ IRQ         | CHAR(30)      | YES  |     |         |         
+ SOFT        | CHAR(30)      | YES  |     |         |         
+ DATE_STR    | CHAR(30)      | YES  |     |         |         
+ CREATE_TIME | TIMESTAMP(19) | YES  |     |         |         
+-------------+---------------+------+-----+---------+---------
+
+Table: DB_INFO
+-------------+---------------+------+-----+---------+---------
+ Field       | Type          | Null | Key | Default | Remarks 
+-------------+---------------+------+-----+---------+---------
+ ID          | CHAR(32)      | NO   | PRI |         |         
+ DBTYPE      | CHAR(32)      | YES  |     |         |         
+ USER        | VARCHAR(50)   | YES  |     |         |         
+ PASSWD      | VARCHAR(50)   | YES  |     |         |         
+ IP          | CHAR(20)      | YES  |     |         |         
+ PORT        | CHAR(10)      | YES  |     |         |         
+ CREATE_TIME | TIMESTAMP(19) | YES  |     |         |         
+ DBNAME      | CHAR(50)      | YES  |     |         |         
+ DB_STATE    | CHAR(1)       | YES  |     |         |         
+ ALIAS_NAME  | VARCHAR(50)   | YES  |     |         |         
+-------------+---------------+------+-----+---------+---------
+
+Table: DB_TABLE
+-------------+---------------+------+-----+---------+---------
+ Field       | Type          | Null | Key | Default | Remarks 
+-------------+---------------+------+-----+---------+---------
+ ID          | CHAR(32)      | NO   | PRI |         |         
+ TABLE_NAME  | VARCHAR(50)   | YES  |     |         |         
+ WHERE_VAL   | VARCHAR(200)  | YES  |     |         |         
+ CREATE_TIME | TIMESTAMP(19) | YES  |     |         |         
+ REMARK      | VARCHAR(50)   | YES  |     |         |         
+ TABLE_COUNT | BIGINT(19)    | YES  |     |         |         
+ DATE_STR    | CHAR(30)      | YES  |     |         |         
+ DBINFO_ID   | CHAR(32)      | YES  |     |         |         
+-------------+---------------+------+-----+---------+---------
+
+Table: DB_TABLE_COUNT
+-------------+---------------+------+-----+---------+---------
+ Field       | Type          | Null | Key | Default | Remarks 
+-------------+---------------+------+-----+---------+---------
+ ID          | CHAR(32)      | NO   | PRI |         |         
+ DB_TABLE_ID | CHAR(32)      | YES  |     |         |         
+ TABLE_COUNT | BIGINT(19)    | YES  |     |         |         
+ DATE_STR    | CHAR(30)      | YES  |     |         |         
+ CREATE_TIME | TIMESTAMP(19) | YES  |     |         |         
+-------------+---------------+------+-----+---------+---------
+
+Table: DESK_STATE
+-------------+---------------+------+-----+---------+---------
+ Field       | Type          | Null | Key | Default | Remarks 
+-------------+---------------+------+-----+---------+---------
+ ID          | CHAR(32)      | NO   | PRI |         |         
+ HOST_NAME   | CHAR(30)      | YES  |     |         |         
+ FILE_STSTEM | CHAR(50)      | YES  |     |         |         
+ SIZE        | CHAR(30)      | YES  |     |         |         
+ USED        | CHAR(30)      | YES  |     |         |         
+ AVAIL       | CHAR(30)      | YES  |     |         |         
+ USE_PER     | CHAR(10)      | YES  |     |         |         
+ DATE_STR    | CHAR(30)      | YES  |     |         |         
+ CREATE_TIME | TIMESTAMP(19) | YES  |     |         |         
+-------------+---------------+------+-----+---------+---------
+
+Table: HEATH_MONITOR
+--------------+---------------+------+-----+---------+---------
+ Field        | Type          | Null | Key | Default | Remarks 
+--------------+---------------+------+-----+---------+---------
+ ID           | CHAR(32)      | NO   | PRI |         |         
+ APP_NAME     | CHAR(50)      | YES  |     |         |         
+ HEATH_URL    | VARCHAR(255)  | YES  |     |         |         
+ CREATE_TIME  | TIMESTAMP(19) | YES  |     |         |         
+ HEATH_STATUS | CHAR(10)      | YES  |     |         |         
+--------------+---------------+------+-----+---------+---------
+
+Table: HOST_INFO
+-------------+---------------+------+-----+---------+---------
+ Field       | Type          | Null | Key | Default | Remarks 
+-------------+---------------+------+-----+---------+---------
+ ID          | CHAR(32)      | NO   | PRI |         |         
+ IP          | CHAR(30)      | YES  |     |         |         
+ PORT        | CHAR(20)      | YES  |     |         |         
+ ROOT        | CHAR(50)      | YES  |     |         |         
+ PASSWD      | CHAR(50)      | YES  |     |         |         
+ CREATE_TIME | TIMESTAMP(19) | YES  |     |         |         
+ REMARK      | VARCHAR(255)  | YES  |     |         |         
+-------------+---------------+------+-----+---------+---------
+
+Table: INTRUSION_INFO
+-------------+---------------+------+-----+---------+---------
+ Field       | Type          | Null | Key | Default | Remarks 
+-------------+---------------+------+-----+---------+---------
+ ID          | CHAR(32)      | NO   | PRI |         |         
+ HOST_NAME   | CHAR(30)      | YES  |     |         |         
+ LSMOD       | TEXT(65535)   | YES  |     |         |         
+ PASSWD_INFO | VARCHAR(100)  | YES  |     |         |         
+ CRONTAB     | TEXT(65535)   | YES  |     |         |         
+ PROMISC     | VARCHAR(100)  | YES  |     |         |         
+ RPCINFO     | TEXT(65535)   | YES  |     |         |         
+ CREATE_TIME | TIMESTAMP(19) | YES  |     |         |         
+-------------+---------------+------+-----+---------+---------
+
+Table: LOG_INFO
+--------------+---------------+------+-----+-------------------+---------
+ Field        | Type          | Null | Key | Default           | Remarks 
+--------------+---------------+------+-----+-------------------+---------
+ ID           | CHAR(32)      | NO   | PRI |                   |         
+ HOST_NAME    | CHAR(50)      | YES  |     |                   |         
+ INFO_CONTENT | TEXT(65535)   | YES  |     |                   |         
+ STATE        | CHAR(1)       | YES  |     |                   |         
+ CREATE_TIME  | TIMESTAMP(19) | NO   |     | CURRENT_TIMESTAMP |         
+--------------+---------------+------+-----+-------------------+---------
+
+Table: MAIL_SET
+----------------+---------------+------+-----+---------+---------
+ Field          | Type          | Null | Key | Default | Remarks 
+----------------+---------------+------+-----+---------+---------
+ ID             | CHAR(32)      | NO   | PRI |         |         
+ SEND_MAIL      | CHAR(60)      | YES  |     |         |         
+ FROM_MAIL_NAME | CHAR(60)      | YES  |     |         |         
+ FROM_PWD       | CHAR(30)      | YES  |     |         |         
+ SMTP_HOST      | CHAR(50)      | YES  |     |         |         
+ SMTP_PORT      | CHAR(30)      | YES  |     |         |         
+ SMTP_SSL       | CHAR(30)      | YES  |     |         |         
+ TO_MAIL        | CHAR(200)     | YES  |     |         |         
+ CPU_PER        | CHAR(30)      | YES  |     |         |         
+ CREATE_TIME    | TIMESTAMP(19) | YES  |     |         |         
+ MEM_PER        | CHAR(30)      | YES  |     |         |         
+ HEATH_PER      | CHAR(30)      | YES  |     |         |         
+----------------+---------------+------+-----+---------+---------
+
+Table: MEM_STATE
+-------------+---------------+------+-----+---------+---------
+ Field       | Type          | Null | Key | Default | Remarks 
+-------------+---------------+------+-----+---------+---------
+ ID          | CHAR(32)      | NO   | PRI |         |         
+ HOST_NAME   | CHAR(30)      | YES  |     |         |         
+ TOTAL       | CHAR(30)      | YES  |     |         |         
+ USED        | CHAR(30)      | YES  |     |         |         
+ FREE        | CHAR(30)      | YES  |     |         |         
+ USE_PER     | DOUBLE(8,2)   | YES  |     |         |         
+ DATE_STR    | CHAR(30)      | YES  |     |         |         
+ CREATE_TIME | TIMESTAMP(19) | YES  |     |         |         
+-------------+---------------+------+-----+---------+---------
+
+Table: NETIO_STATE
+-------------+---------------+------+-----+---------+---------
+ Field       | Type          | Null | Key | Default | Remarks 
+-------------+---------------+------+-----+---------+---------
+ ID          | CHAR(32)      | NO   | PRI |         |         
+ HOST_NAME   | CHAR(30)      | YES  |     |         |         
+ RXPCK       | CHAR(30)      | YES  |     |         |         
+ TXPCK       | CHAR(30)      | YES  |     |         |         
+ RXBYT       | CHAR(30)      | YES  |     |         |         
+ TXBYT       | CHAR(30)      | YES  |     |         |         
+ RXCMP       | CHAR(30)      | YES  |     |         |         
+ TXCMP       | CHAR(30)      | YES  |     |         |         
+ RXMCST      | CHAR(30)      | YES  |     |         |         
+ DATE_STR    | CHAR(30)      | YES  |     |         |         
+ CREATE_TIME | TIMESTAMP(19) | YES  |     |         |         
+-------------+---------------+------+-----+---------+---------
+
+Table: SYSTEM_INFO
+----------------+---------------+------+-----+---------+---------
+ Field          | Type          | Null | Key | Default | Remarks 
+----------------+---------------+------+-----+---------+---------
+ ID             | CHAR(32)      | NO   | PRI |         |         
+ HOST_NAME      | CHAR(30)      | YES  |     |         |         
+ VERSION        | CHAR(100)     | YES  |     |         |         
+ VERSION_DETAIL | CHAR(200)     | YES  |     |         |         
+ CPU_PER        | DOUBLE(8,2)   | YES  |     |         |         
+ MEM_PER        | DOUBLE(8,2)   | YES  |     |         |         
+ CPU_CORE_NUM   | CHAR(10)      | YES  |     |         |         
+ CREATE_TIME    | TIMESTAMP(19) | YES  |     |         |         
+ CPU_XH         | CHAR(150)     | YES  |     |         |         
+ STATE          | CHAR(1)       | YES  |     |         |         
+----------------+---------------+------+-----+---------+---------
+
+Table: SYS_LOAD_STATE
+--------------+---------------+------+-----+---------+---------
+ Field        | Type          | Null | Key | Default | Remarks 
+--------------+---------------+------+-----+---------+---------
+ ID           | CHAR(32)      | NO   | PRI |         |         
+ HOST_NAME    | CHAR(30)      | YES  |     |         |         
+ ONE_LOAD     | DOUBLE(8,2)   | YES  |     |         |         
+ FIVE_LOAD    | DOUBLE(8,2)   | YES  |     |         |         
+ FIFTEEN_LOAD | DOUBLE(8,2)   | YES  |     |         |         
+ USERS        | CHAR(10)      | YES  |     |         |         
+ DATE_STR     | CHAR(30)      | YES  |     |         |         
+ CREATE_TIME  | TIMESTAMP(19) | YES  |     |         |         
+--------------+---------------+------+-----+---------+---------
+
+Table: TCP_STATE
+-------------+---------------+------+-----+---------+---------
+ Field       | Type          | Null | Key | Default | Remarks 
+-------------+---------------+------+-----+---------+---------
+ ID          | CHAR(32)      | NO   | PRI |         |         
+ HOST_NAME   | CHAR(30)      | YES  |     |         |         
+ ACTIVE      | CHAR(30)      | YES  |     |         |         
+ PASSIVE     | CHAR(30)      | YES  |     |         |         
+ RETRANS     | CHAR(30)      | YES  |     |         |         
+ DATE_STR    | CHAR(30)      | YES  |     |         |         
+ CREATE_TIME | TIMESTAMP(19) | YES  |     |         |         
+-------------+---------------+------+-----+---------+---------
+
+Table: attack_source_log
+----------------+---------------------+------+-----+-------------------+---------
+ Field          | Type                | Null | Key | Default           | Remarks 
+----------------+---------------------+------+-----+-------------------+---------
+ id             | BIGINT UNSIGNED(20) | NO   | PRI |                   | 主键 自增主键 
+ timer_log_id   | BIGINT UNSIGNED(20) | NO   |     |                   | 对应定时任务  
+ attack_ip      | VARCHAR(32)         | NO   |     |                   | 攻击ip    
+ attack_address | VARCHAR(50)         | NO   |     |                   | 攻击地点    
+ attack_number  | INT(10)             | NO   |     |                   | 攻击次数    
+ attack_type    | TINYINT UNSIGNED(3) | NO   |     |                   | 攻击源类型   
+ is_deleted     | TINYINT UNSIGNED(3) | NO   |     | 0                 | 是否删除 0-未删除 1-已删除
+ created_time   | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 创建时间 创建时间
+ updated_time   | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 更新时间 更新时间
+----------------+---------------------+------+-----+-------------------+---------
+
+Table: boundary
+--------------+---------------------+------+-----+-------------------+---------
+ Field        | Type                | Null | Key | Default           | Remarks 
+--------------+---------------------+------+-----+-------------------+---------
+ id           | BIGINT UNSIGNED(20) | NO   | PRI |                   | 主键 自增主键 
+ ip_address   | VARCHAR(50)         | NO   |     |                   | 防火墙IP   
+ username     | VARCHAR(50)         | NO   |     |                   | 用户名     
+ password     | VARCHAR(50)         | NO   |     |                   | 密码      
+ note         | VARCHAR(255)        | YES  |     |                   | 备注      
+ status       | TINYINT UNSIGNED(3) | NO   |     | 1                 | 状态 1-正常 2-禁用
+ is_deleted   | TINYINT UNSIGNED(3) | NO   |     | 0                 | 是否删除 0-未删除 1-已删除
+ created_time | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 创建时间 创建时间
+ updated_time | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 更新时间 更新时间
+--------------+---------------------+------+-----+-------------------+---------
+
+Table: command
+--------------+---------------------+------+-----+-------------------+---------
+ Field        | Type                | Null | Key | Default           | Remarks 
+--------------+---------------------+------+-----+-------------------+---------
+ id           | BIGINT UNSIGNED(20) | NO   | PRI |                   | 主键 自增主键 
+ name         | VARCHAR(128)        | NO   |     |                   | 名称      
+ note         | VARCHAR(255)        | YES  |     |                   | 备注      
+ content      | VARCHAR(255)        | NO   |     |                   | 命令内容    
+ status       | TINYINT UNSIGNED(3) | NO   |     | 1                 | 状态      
+ is_deleted   | TINYINT UNSIGNED(3) | NO   |     | 0                 | 是否删除 0-未删除 1-已删除
+ created_time | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 创建时间 创建时间
+ updated_time | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 更新时间 更新时间
+--------------+---------------------+------+-----+-------------------+---------
+
+Table: perception_source
+---------------------+---------------------+------+-----+-------------------+---------
+ Field               | Type                | Null | Key | Default           | Remarks 
+---------------------+---------------------+------+-----+-------------------+---------
+ id                  | BIGINT UNSIGNED(20) | NO   | PRI |                   | 主键 自增主键 
+ name                | VARCHAR(128)        | NO   |     |                   | 平台名称    
+ perception_platform | TINYINT UNSIGNED(3) | NO   |     |                   | 对应平台 1-深信服 2-绿盟
+ protocol_type       | TINYINT UNSIGNED(3) | NO   |     |                   | 协议类型 1-HTTP协议 2-HTTPS协议
+ host                | VARCHAR(32)         | NO   |     |                   | 主机地址    
+ account             | VARCHAR(50)         | NO   |     |                   | 登录用户名   
+ password            | VARCHAR(50)         | NO   |     |                   | 登录密码    
+ cookie              | VARCHAR(255)        | YES  |     |                   | 对应的cookie
+ is_validated        | TINYINT UNSIGNED(3) | NO   |     | 0                 | 是否通过验证 0-未通过验证 1-已通过验证
+ extra_data          | VARCHAR(3072)       | YES  |     |                   | 存储的额外信息 
+ is_deleted          | TINYINT UNSIGNED(3) | NO   |     | 0                 | 是否删除 0-未删除 1-已删除
+ created_time        | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 创建时间 创建时间
+ updated_time        | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 更新时间 更新时间
+---------------------+---------------------+------+-----+-------------------+---------
+
+Table: shreshold
+--------------+---------------------+------+-----+-------------------+---------
+ Field        | Type                | Null | Key | Default           | Remarks 
+--------------+---------------------+------+-----+-------------------+---------
+ id           | BIGINT UNSIGNED(20) | NO   | PRI |                   | 主键 自增主键 
+ name         | VARCHAR(50)         | YES  |     |                   | 名称      
+ key          | VARCHAR(50)         | YES  |     |                   | 键       
+ value        | VARCHAR(32)         | YES  |     |                   | 值       
+ is_deleted   | TINYINT UNSIGNED(3) | NO   |     | 0                 | 是否删除 0-未删除 1-已删除
+ created_time | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 创建时间 创建时间
+ updated_time | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 更新时间 更新时间
+--------------+---------------------+------+-----+-------------------+---------
+
+Table: timer
+--------------+---------------------+------+-----+-------------------+---------
+ Field        | Type                | Null | Key | Default           | Remarks 
+--------------+---------------------+------+-----+-------------------+---------
+ id           | BIGINT UNSIGNED(20) | NO   | PRI |                   | 主键 自增主键 
+ source_id    | BIGINT UNSIGNED(20) | NO   |     |                   | 对应平台    
+ cron_express | VARCHAR(50)         | NO   |     |                   | 定时任务表达式 
+ status       | TINYINT UNSIGNED(3) | NO   |     | 1                 | 定时任务状态  
+ is_deleted   | TINYINT UNSIGNED(3) | NO   |     | 0                 | 是否删除 0-未删除 1-已删除
+ created_time | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 创建时间 创建时间
+ updated_time | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 更新时间 更新时间
+--------------+---------------------+------+-----+-------------------+---------
+
+Table: timer_command_log
+-----------------+---------------------+------+-----+-------------------+---------
+ Field           | Type                | Null | Key | Default           | Remarks 
+-----------------+---------------------+------+-----+-------------------+---------
+ id              | BIGINT UNSIGNED(20) | NO   | PRI |                   | 主键 自增主键 
+ timer_log_id    | BIGINT UNSIGNED(20) | NO   |     |                   | 定时任务运行ID
+ boundary_id     | BIGINT UNSIGNED(20) | NO   |     |                   | 对应边界ID  
+ command_id      | BIGINT UNSIGNED(20) | NO   |     |                   | 对应命令ID  
+ ip_address      | VARCHAR(32)         | NO   |     |                   | 对应IP    
+ is_white        | TINYINT UNSIGNED(3) | NO   |     | 0                 | 是否为白名单  
+ command_content | VARCHAR(3072)       | NO   |     |                   | 执行命令内容  
+ is_success      | TINYINT UNSIGNED(3) | NO   |     | 0                 | 是否成功    
+ command_result  | VARCHAR(3072)       | YES  |     |                   | 返回结果    
+ err_msg         | VARCHAR(255)        | YES  |     |                   | 错误信息    
+ is_deleted      | TINYINT UNSIGNED(3) | NO   |     | 0                 | 是否删除 0-未删除 1-已删除
+ created_time    | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 创建时间 创建时间
+ updated_time    | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 更新时间 更新时间
+-----------------+---------------------+------+-----+-------------------+---------
+
+Table: timer_relation
+--------------+---------------------+------+-----+-------------------+---------
+ Field        | Type                | Null | Key | Default           | Remarks 
+--------------+---------------------+------+-----+-------------------+---------
+ id           | BIGINT UNSIGNED(20) | NO   | PRI |                   | 主键 自增主键 
+ timer_id     | BIGINT UNSIGNED(20) | NO   |     |                   | 定时任务ID  
+ type         | TINYINT UNSIGNED(3) | YES  |     |                   | 关联类型 1-边界 2-命令
+ target_id    | BIGINT UNSIGNED(20) | NO   |     |                   | 对应ID    
+ is_deleted   | TINYINT UNSIGNED(3) | NO   |     | 0                 | 是否删除 0-未删除 1-已删除
+ created_time | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 创建时间 创建时间
+ updated_time | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 更新时间 更新时间
+--------------+---------------------+------+-----+-------------------+---------
+
+Table: timer_runner_log
+------------------------+---------------------+------+-----+-------------------+---------
+ Field                  | Type                | Null | Key | Default           | Remarks 
+------------------------+---------------------+------+-----+-------------------+---------
+ id                     | BIGINT UNSIGNED(20) | NO   | PRI |                   | 主键 自增主键 
+ timer_id               | BIGINT UNSIGNED(20) | NO   |     |                   | 对应定时任务  
+ is_success             | TINYINT UNSIGNED(3) | NO   |     | 0                 | 抓取top5是否成功 0-不成功 1-成功
+ top5_info              | VARCHAR(3072)       | YES  |     |                   | top5信息  
+ command_number         | INT(10)             | NO   |     | 0                 | 待执行命令条数 
+ command_success_number | INT(10)             | NO   |     | 0                 | 执行命令成功条数
+ is_deleted             | TINYINT UNSIGNED(3) | NO   |     | 0                 | 是否删除 0-未删除 1-已删除
+ created_time           | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 创建时间 创建时间
+ updated_time           | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 更新时间 更新时间
+------------------------+---------------------+------+-----+-------------------+---------
+
+Table: user
+--------------+---------------------+------+-----+------------------------------------------+---------
+ Field        | Type                | Null | Key | Default                                  | Remarks 
+--------------+---------------------+------+-----+------------------------------------------+---------
+ id           | BIGINT UNSIGNED(20) | NO   | PRI |                                          | 主键 自增主键 
+ username     | VARCHAR(128)        | NO   |     |                                          | 用户名称    
+ account      | VARCHAR(50)         | NO   |     |                                          | 登录账号    
+ password     | VARCHAR(50)         | NO   |     | 7c4a8d09ca3762af61e59520943dc26494f8941b | 登录密码 sha1加密
+ is_super     | TINYINT UNSIGNED(3) | NO   |     | 0                                        | 是否为超级管理员
+ role         | TINYINT UNSIGNED(3) | NO   |     | 0                                        | 角色      
+ is_deleted   | TINYINT UNSIGNED(3) | NO   |     | 0                                        | 是否删除 0-未删除 1-已删除
+ created_time | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP                        | 创建时间 创建时间
+ updated_time | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP                        | 更新时间 更新时间
+--------------+---------------------+------+-----+------------------------------------------+---------
+
+Table: user_session
+--------------+---------------------+------+-----+-------------------+---------
+ Field        | Type                | Null | Key | Default           | Remarks 
+--------------+---------------------+------+-----+-------------------+---------
+ id           | BIGINT UNSIGNED(20) | NO   | PRI |                   | 主键 自增主键 
+ user_id      | BIGINT UNSIGNED(20) | YES  |     |                   | 用户id 对应lawyer表或user表id
+ session_id   | VARCHAR(32)         | NO   |     |                   | 统一认证信息  
+ expires_in   | BIGINT(19)          | NO   |     |                   | session有效时间 单位s，0表示永久有效
+ expires_time | BIGINT(19)          | YES  |     |                   | session过期时间 0表示永久有效，否则为session过期时间
+ created_time | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 创建时间 创建时间
+ updated_time | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 更新时间 更新时间
+--------------+---------------------+------+-----+-------------------+---------
+
+Table: white_list
+--------------+---------------------+------+-----+-------------------+---------
+ Field        | Type                | Null | Key | Default           | Remarks 
+--------------+---------------------+------+-----+-------------------+---------
+ id           | BIGINT UNSIGNED(20) | NO   | PRI |                   | 主键 自增主键 
+ ip_address   | VARCHAR(128)        | NO   |     |                   | 输入的ip地址信息
+ ip_start     | VARCHAR(50)         | NO   |     |                   | IP段起始地址 
+ ip_end       | VARCHAR(50)         | NO   |     |                   | IP段结束地址 
+ note         | VARCHAR(255)        | YES  |     |                   | 备注      
+ status       | TINYINT UNSIGNED(3) | NO   |     | 1                 | 状态 1-正常 2-禁用
+ is_deleted   | TINYINT UNSIGNED(3) | NO   |     | 0                 | 是否删除 0-未删除 1-已删除
+ created_time | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 创建时间 创建时间
+ updated_time | TIMESTAMP(19)       | NO   |     | CURRENT_TIMESTAMP | 更新时间 更新时间
+--------------+---------------------+------+-----+-------------------+---------
+

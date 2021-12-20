@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <div th:replace="common/header.html"></div>
+
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div th:replace="common/chart.html"></div>
+
+<div class="wrapper">
+
+    <!--   <div th:replace="common/navbar.html"></div> -->
+
+    <!--   <div th:replace="common/aside.html"></div> -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1></h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item active"></li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-md-10">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">预警短信配置(tencentsdk)(发送内存，CPU，服务接口告警，若不需要，可以删除或停用)</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form role="form" id="form1" method="post" th:action="@{'/smsset/save'}">
+                                <input type="hidden" name="id" th:value="${smsSet.id}"/>
+                                <div class="card-body">
+                                    <!--<div class="form-group">
+                                        <label for="exampleInputEsms1"><font color="red">*</font>是否启用告警邮件</label>
+                                        <select class="form-control"   name="sendSms" id="sendSms">
+                                            <option value="0">停用</option>
+                                            <option value="1">启用</option>
+                                        </select>
+                                    </div>-->
+                                    <div class="form-group">
+                                        <label for="tencentSmsAppId"><font color="red">*</font>发送短信帐号</label>
+                                        <input type="text" th:value="${smsSet.tencentSmsAppId}" autocomplete="off"
+                                               class="validate[required,maxSize[40]] form-control"
+                                               name="tencentSmsAppId" id="tencentSmsAppId" placeholder="1400***471">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tencentSmsSecretId"><font color="red">*</font>发送短信secretId</label>
+                                        <input type="password" th:value="${smsSet.tencentSmsSecretId}"
+                                               class="validate[required,maxSize[100]] form-control" name="tencentSmsSecretId"
+                                               id="tencentSmsSecretId" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tencentSmsSecretKey"><font color="red">*</font>发送短信secretKey</label>
+                                        <input type="password" th:value="${smsSet.tencentSmsSecretKey}"
+                                               autocomplete="off" class="validate[required,maxSize[100]] form-control"
+                                               name="tencentSmsSecretKey" id="tencentSmsSecretKey">
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="toMobile"><font color="red">*</font>接收手机号,多个手机号用;隔开</label>
+                                        <input type="text" th:value="${smsSet.toMobile}" autocomplete="off"
+                                               class="validate[required,maxSize[200]] form-control" name="toMobile"
+                                               id="toMobile" placeholder="13100688323;13100688324">
+                                    </div>
+
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <button type="button" onclick="testSms()" class="btn btn-primary">测试发送</button>
+<!--                                    <button type="submit" class="btn btn-primary">保存</button>-->
+<!--                                    <button type="button" th:onclick="del([[${smsSet.id}]])"-->
+<!--                                            class="btn bg-gradient-danger">删除-->
+<!--                                    </button>-->
+                                </div>
+
+                            </form>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <div th:replace="common/footer.html"></div>
+
+</div>
+<!-- ./wrapper -->
+<link rel="stylesheet" th:href="@{'/static/js/jQuery/validationEngine.jquery.css'}" type="text/css"/>
+<script th:src="@{'/static/js/jQuery/jquery.validationEngine-zh_CN.js'}" type="text/javascript"
+        charset="utf-8"></script>
+<script th:src="@{'/static/js/jQuery/jquery.validationEngine.js'}" type="text/javascript" charset="utf-8"></script>
+<script th:inline="javascript">
+    $(document).ready(function(){
+        $("#form1").validationEngine();
+    });
+
+    function testSms() {
+        $("#form1").attr("action","/monitor-server/smsset/test");
+        $("#form1").submit();
+    }
+
+    function del(id) {
+        if(confirm('你确定要删除吗？')){
+            window.location.href = "/monitor-server/smsset/del?id="+id;
+        }
+    }
+
+    function setSmtpPort(){
+        if($("#smtpSSL").val()=='0'){
+            $("#smtpPort").val('25')
+        }
+        if($("#smtpSSL").val()=='1'){
+            $("#smtpPort").val('465')
+        }
+    }
+    toastr.options.timeOut = 15000;
+    var msg = [[${msg}]];
+    if(msg!=''){
+        if(msg.indexOf("测试发送失败")>-1){
+            toastr.error(msg);
+        }else{
+            toastr.success(msg);
+        }
+    }
+</script>
+</body>
+</html>
